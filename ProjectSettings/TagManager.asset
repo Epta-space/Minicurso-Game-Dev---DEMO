@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectable
   - Launch_base
+  - perigo
   layers:
   - Default
   - TransparentFX

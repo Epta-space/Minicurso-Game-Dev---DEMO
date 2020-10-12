@@ -5,13 +5,22 @@ using UnityEngine;
 public class Collider_script : MonoBehaviour
 {
     public int count;
+    public gameManager gameManager;
+
 
     void start(){
         count = 0;
     }
 
     void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.CompareTag("Collectable")) //If thing hit is tagged "Obstacle"
+
+        if (col.gameObject.CompareTag("perigo"))
+        {
+            print("Você perdeu!!");
+            FindObjectOfType<gameManager>().GameOver();
+        }
+
+        if (col.gameObject.CompareTag("Collectable")) //If thing hit is tagged "Obstacle"
         {
             Destroy(col.gameObject); //Then destroy the player
             count ++;
