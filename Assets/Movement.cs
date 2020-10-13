@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private int currentDirection; //1 = right; -1 = left;
     private bool moving;
 
+    public Animator animator;
+
     void Start(){
         moving = false;
         currentDirection = 1;
@@ -22,9 +24,11 @@ public class Movement : MonoBehaviour
     }
 
     void Update(){
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector2 dir = new Vector2(x,y);
+        
 
         if (Input.GetKeyDown(KeyCode.Space)&& cont<=0){
             jump();
@@ -32,6 +36,8 @@ public class Movement : MonoBehaviour
         }
 
         walk(dir);
+
+        animator.SetFloat("Animator_speed", dir.x);
 
         if(moving){
             rb.velocity = (new Vector2(currentDirection * speed, rb.velocity.y));
@@ -66,6 +72,7 @@ public class Movement : MonoBehaviour
             this.transform.rotation = new Quaternion(0,0,0,0);
         }
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        animator.SetFloat("Animator_speed", dir.x);
     }
 
     public void jump(){
