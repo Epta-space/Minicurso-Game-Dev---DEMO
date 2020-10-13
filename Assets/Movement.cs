@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
         animator.SetFloat("Animator_speed", dir.x);
 
         if(moving){
+            animator.SetFloat("Animator_speed", currentDirection);
             rb.velocity = (new Vector2(currentDirection * speed, rb.velocity.y));
         }
     }
@@ -53,7 +54,6 @@ public class Movement : MonoBehaviour
             currentDirection = -1;
             this.transform.rotation = new Quaternion(0,180,0,0);
         }
-        animator.SetFloat("Animator_speed", currentDirection);
     }
 
     public void HorizontalStay(){
@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour
 
     public void walk(Vector2 dir){
         if(dir.x < 0){
-            this.transform.rotation = new Quaternion(0,180,0,0);
+            this.transform.rotation = new Quaternion(0,0,0,0);
         }else{
             this.transform.rotation = new Quaternion(0,0,0,0);
         }
