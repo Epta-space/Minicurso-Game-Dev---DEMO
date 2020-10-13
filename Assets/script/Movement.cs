@@ -30,9 +30,8 @@ public class Movement : MonoBehaviour
         Vector2 dir = new Vector2(x,y);
         
 
-        if (Input.GetKeyDown(KeyCode.Space)&& cont<=0){
+        if (Input.GetKeyDown(KeyCode.Space)){
             jump();
-            cont++;
         }
 
         walk(dir);
@@ -76,7 +75,10 @@ public class Movement : MonoBehaviour
     }
 
     public void jump(){
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += Vector2.up * jumpForce;
+        if (cont<= 0){
+            cont++;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.velocity += Vector2.up * jumpForce;
+        }
     }
 }

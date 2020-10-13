@@ -8,9 +8,12 @@ public class Collider_script : MonoBehaviour
     public int count;
     public GameObject teste;
 
+    public GameObject controlls;
+
 
     void start(){
         count = 0;
+        // controlls = GameObject.FindGameObjectWithTag("canvas_controles");
     }
 
     void OnCollisionEnter2D(Collision2D col){
@@ -34,6 +37,9 @@ public class Collider_script : MonoBehaviour
                 SceneManager.LoadScene("CutScene2");
             } 
             else{
+
+                controlls.SetActive(true);
+                Time.timeScale = 0;
                 print("Colete os objetos faltantes");
             }
         }

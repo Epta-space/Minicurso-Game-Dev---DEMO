@@ -8,6 +8,8 @@ TagManager:
   - Launch_base
   - perigo
   - SceneManager
+  - canvas_controles
+  - canvas_missao
   layers:
   - Default
   - TransparentFX
