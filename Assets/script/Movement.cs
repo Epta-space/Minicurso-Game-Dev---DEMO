@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private int currentDirection; //1 = right; -1 = left;
     private bool moving;
 
+    public Animator animator;
+
     void Start(){
         moving = false;
         currentDirection = 1;
@@ -22,9 +24,11 @@ public class Movement : MonoBehaviour
     }
 
     void Update(){
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector2 dir = new Vector2(x,y);
+        
 
         if (Input.GetKeyDown(KeyCode.Space)&& cont<=0){
             jump();
@@ -33,19 +37,21 @@ public class Movement : MonoBehaviour
 
         walk(dir);
 
+        animator.SetFloat("Animator_speed", dir.x);
+
         if(moving){
+            animator.SetFloat("Animator_speed", currentDirection);
             rb.velocity = (new Vector2(currentDirection * speed, rb.velocity.y));
         }
     }
 
     public void HorizontalMove(int direction){
         moving = true;
-
         if(currentDirection < 0 && direction > 0){
             currentDirection = 1;
             this.transform.rotation = new Quaternion(0,0,0,0);
         } else if(currentDirection > 0 && direction < 0){
-            currentDirection = 1;
+            currentDirection = -1;
             this.transform.rotation = new Quaternion(0,180,0,0);
         }
     }
@@ -61,11 +67,12 @@ public class Movement : MonoBehaviour
 
     public void walk(Vector2 dir){
         if(dir.x < 0){
-            this.transform.rotation = new Quaternion(0,180,0,0);
+            this.transform.rotation = new Quaternion(0,0,0,0);
         }else{
             this.transform.rotation = new Quaternion(0,0,0,0);
         }
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+        animator.SetFloat("Animator_speed", dir.x);
     }
 
     public void jump(){
