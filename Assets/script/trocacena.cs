@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class trocacena : MonoBehaviour
 {
+    public bool cena = false;
     void Start()
-    {
-            InvokeRepeating("GotoNextScene", 19f,100000f);
+    { 
+        if(cena == false)
+        {
+            cena = true;
+            Invoke("GotoNextScene", 21f);
+        }
+       
     }  
     void GotoNextScene()
     {
