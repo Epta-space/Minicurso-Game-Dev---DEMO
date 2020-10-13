@@ -46,14 +46,14 @@ public class Movement : MonoBehaviour
 
     public void HorizontalMove(int direction){
         moving = true;
-
         if(currentDirection < 0 && direction > 0){
             currentDirection = 1;
             this.transform.rotation = new Quaternion(0,0,0,0);
         } else if(currentDirection > 0 && direction < 0){
-            currentDirection = 1;
+            currentDirection = -1;
             this.transform.rotation = new Quaternion(0,180,0,0);
         }
+        animator.SetFloat("Animator_speed", currentDirection);
     }
 
     public void HorizontalStay(){
