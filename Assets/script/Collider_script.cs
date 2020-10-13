@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Collider_script : MonoBehaviour
 {
     public int count;
-    public gameManager gameManager;
+    public GameObject teste;
 
 
     void start(){
@@ -30,7 +31,9 @@ public class Collider_script : MonoBehaviour
         {
             if(count ==  4){
                 print("Você venceu!!");
-            } else{
+                SceneManager.LoadScene("CutScene2");
+            } 
+            else{
                 print("Colete os objetos faltantes");
             }
         }
